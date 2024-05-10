@@ -5,9 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -25,7 +25,9 @@ public class Product extends BaseEntity{
 
     private Integer remainingQuantity;
 
-@ManyToMany
-@JoinTable(name = "product_category_rel")
+     @ManyToMany
+     @JoinTable(name = "product_category_rel",
+     joinColumns = @JoinColumn(name = "p_id"),
+     inverseJoinColumns = @JoinColumn(name = "c_id"))
     private List<Category> categoryList;
 }
